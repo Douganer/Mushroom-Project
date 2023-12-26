@@ -29,9 +29,21 @@ def load_ocr():
 def findStr(str):
     if ocr is None:
         raise RuntimeError("DLL not loaded. Call load_dll first.")
-    ocr.findtext(model, '', '', '', 60, 1024, 0.3, 0.3, 1.5)
+    path = Path(os.path.dirname(__file__) + "/1.png")
+    return_str = None
+    return_str_len = None
+    function = ocr.findtext
+
+    function.argtypes = [ctypes.c_int, ctypes.c_byte, ctypes.c_int, ctypes.c_byte, ctypes.c_int, ctypes.c_int,
+                         ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_bool, ctypes.c_bool, ctypes.c_int,
+                         ctypes.c_int]
+    ocr.findtext(model, path.read_bytes(), path.stat().st_size, "大漠".encode(), 60, 1024, 0.3, 0.3, 1.5, False, False,
+                 return_str,
+                 return_str_len)
+    print(return_str.decode())
+    print(return_str_len)
 
 
 if __name__ == "__main__":
     load_ocr()
-    # findStr(str)
+    findStr(str)
