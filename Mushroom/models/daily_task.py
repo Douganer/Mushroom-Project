@@ -1,0 +1,20 @@
+# 日常任务实体
+class DailyTask:
+    daily_task_cl: bool
+    daily_task_cl_level: int
+    daily_task_cl_buff_1: bool
+    daily_task_cl_buff_2: bool
+    daily_task_cl_buff_3: bool
+    daily_task_cl_buff_4: bool
+    daily_task_cl_buff_5: bool
+    daily_task_cl_buff_6: bool
+    daily_task_jy: bool
+    daily_task_jy_open: bool
+    daily_task_jg: bool
+    daily_task_jzt: bool
+    daily_task_zc: bool
+    daily_task_zc_day: int
+    daily_task_ty: bool
+    daily_task_ty_order: int
+    daily_task_jh: bool
+    daily_task_cy: bool

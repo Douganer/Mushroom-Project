@@ -1,0 +1,1955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>688</width>
+    <height>668</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*整个垂直滚动条区域样式*/\
+QScrollBar:vertical{background-color:white;width:10px;border:none;}\
+/*滚动条上⾯和下⾯区域样式*/\
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical{background-color:white;border-radius:4px;border:none}\
+/*滑块区域样式*/\
+QScrollBar::handle:vertical{background:lightgray;border-radius:4px;border:none}\
+/*⿏标滑过滑块样式*/\
+QScrollBar::handle:vertical:hover,QScrollBar::handle:vertical:pressed{background:#C0C0C0;border-radius:4px;border:none}\
+/*向上箭头样式*/\
+QScrollBar::sub-line:vertical{background:white}\
+/*向下箭头样式*/\
+QScrollBar::add-line:vertical{background:white}\
+/*整个垂直滚动条区域样式*/\	
+/*注意，水平方向上的滚动条需要设置的是高度，垂直方向设置的是宽度*/\
+QScrollBar:horizontal{background-color:white; height:10px;border:none;}\
+/*滚动条上⾯和下⾯区域样式*/\
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:vertical{background-color:white;border-radius:4px;border:none}\
+/*滑块区域样式*/\
+QScrollBar::handle:horizontal{background:lightgray;border-radius:4px;border:none}\
+/*⿏标滑过滑块样式*/\
+QScrollBar::handle:horizontal:hover,QScrollBar::handle:vertical:pressed{background:#C0C0C0;border-radius:4px;border:none}\
+/*向上箭头样式*/\
+QScrollBar::sub-line:horizontal{background:white}\
+/*向下箭头样式*/\
+QScrollBar::add-line:horizontal{background:white}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="windowTab">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>660</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>1</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*style-dark*/
+QTabWidget::pane { /* The tab widget frame */
+    border: 1px solid #00BB9E;
+	border-radius:5px;
+    
+}
+ 
+QTabWidget::tab-bar {
+    alignment: left;
+}
+ 
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: #D3D3D3;/*qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);*/
+    border: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 100px;
+    height: 20px;
+    padding: 6px;
+	color:#000000;
+}
+ 
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #fafafa, stop: 1.0 #00BB9E);
+ 
+}/**/
+ 
+QTabBar::tab:selected {
+    border: 1px solid #00BB9E;
+    /*border-bottom-color: #00BB9E;  same as pane color*/ 
+}</string>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
+    <property name="currentIndex">
+     <number>-1</number>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>51</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>窗口名称：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="window_name_label">
+    <property name="geometry">
+     <rect>
+      <x>87</x>
+      <y>51</y>
+      <width>36</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:'#00BB9E'</string>
+    </property>
+    <property name="text">
+     <string>加载中</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>244</x>
+      <y>51</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="toolTipDuration">
+     <number>8</number>
+    </property>
+    <property name="text">
+     <string>窗口句柄：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="window_hwnd_label">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>51</y>
+      <width>36</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="toolTipDuration">
+     <number>8</number>
+    </property>
+    <property name="text">
+     <string>加载中</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>90</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>执行状态：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="window_task_status_label">
+    <property name="geometry">
+     <rect>
+      <x>87</x>
+      <y>90</y>
+      <width>36</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>加载中</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>244</x>
+      <y>90</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前任务：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="current_task_label">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>90</y>
+      <width>36</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>加载中</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>70</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>启动任务</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>2</number>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="button.qrc">
+      <normaloff>:/images/icon_start.png</normaloff>:/images/icon_start.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>70</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>暂停任务</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>2</number>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="button.qrc">
+      <normaloff>:/images/icon_pause.png</normaloff>:/images/icon_pause.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>70</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>停止任务</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>2</number>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="button.qrc">
+      <normaloff>:/images/icon_stop.png</normaloff>:/images/icon_stop.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>660</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>641</width>
+       <height>700</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <widget class="QGroupBox" name="groupBox_8">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>320</y>
+        <width>150</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>工会任务</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_4">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>86</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会篝火</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>28</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会签到</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_6">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>115</y>
+         <width>83</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会讨伐战</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_2">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>57</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会捐献</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_7">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>144</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会对战</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>20</y>
+        <width>630</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>日常任务</string>
+      </property>
+      <widget class="QCheckBox" name="daily_task_cy">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>421</x>
+         <y>260</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>次元系统</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_zc">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>168</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>周常副本</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>材料副本</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_jg">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>122</y>
+         <width>107</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>金钩海兵王</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_jy_open">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>77</y>
+         <width>87</width>
+         <height>19</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>是否开箱</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_jzt">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>421</x>
+         <y>122</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>奈特金字塔</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="daily_task_cl_level">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>30</y>
+         <width>90</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>默认副本</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100-阿里安特</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>120-卡帕莱特</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>140-神木村</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>150-龙之峡谷</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_jy">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>76</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>精英副本</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_jh">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>260</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>进化系统</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_ty">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>214</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>唐云教室</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_ty_order_6">
+       <property name="geometry">
+        <rect>
+         <x>131</x>
+         <y>215</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>领主</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_ty_order_7">
+       <property name="geometry">
+        <rect>
+         <x>195</x>
+         <y>215</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>经验</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_ty_order_8">
+       <property name="geometry">
+        <rect>
+         <x>259</x>
+         <y>215</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>魔法</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_ty_order_9">
+       <property name="geometry">
+        <rect>
+         <x>322</x>
+         <y>215</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>暴击</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_zc_day_6">
+       <property name="geometry">
+        <rect>
+         <x>131</x>
+         <y>170</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>智力</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_zc_day_7">
+       <property name="geometry">
+        <rect>
+         <x>194</x>
+         <y>170</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>幸运</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_zc_day_8">
+       <property name="geometry">
+        <rect>
+         <x>257</x>
+         <y>170</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>力量</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_zc_day_10">
+       <property name="geometry">
+        <rect>
+         <x>383</x>
+         <y>170</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>随机</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_zc_day_9">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>170</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>敏捷</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_8">
+       <property name="geometry">
+        <rect>
+         <x>305</x>
+         <y>33</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>防御</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_7">
+       <property name="geometry">
+        <rect>
+         <x>241</x>
+         <y>33</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>攻击</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_9">
+       <property name="geometry">
+        <rect>
+         <x>369</x>
+         <y>33</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>速度</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_10">
+       <property name="geometry">
+        <rect>
+         <x>433</x>
+         <y>33</y>
+         <width>53</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>+10秒</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_12">
+       <property name="geometry">
+        <rect>
+         <x>562</x>
+         <y>33</y>
+         <width>53</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>+25秒</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="daily_task_cl_buff_11">
+       <property name="geometry">
+        <rect>
+         <x>498</x>
+         <y>33</y>
+         <width>53</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>+15秒</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_10">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>320</y>
+        <width>150</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>远征\军团</string>
+      </property>
+      <widget class="QRadioButton" name="daily_task_jh_3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>25</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>自动</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="daily_task_jh_4">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>25</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>邀请</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_YZ_ZK_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>51</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>扎昆</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_YZ_LW_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>77</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>暗黑龙王</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_YZ_PKB_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>103</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>品克缤</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_YZ_XNS_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>129</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>希纳斯</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_YZ_BH_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>155</y>
+         <width>47</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>ForbiddenCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>蝙蝠</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_11">
+      <property name="geometry">
+       <rect>
+        <x>485</x>
+        <y>320</y>
+        <width>150</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>活动任务</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_14">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>57</y>
+         <width>81</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>枫币任务</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_3">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>28</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>每日签到</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_12">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>320</y>
+        <width>150</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>奖励领取</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_8">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>24</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>每日奖励</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_9">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>49</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>每周奖励</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_10">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>74</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会每日</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_11">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>99</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会每周</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_12">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>124</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>军团奖励</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_13">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>149</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>个人邮件</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>510</y>
+        <width>150</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>其他任务</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_17">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>30</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>送人气</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_18">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>61</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>宠物探险</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_19">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>92</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>委托任务</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_14">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>510</y>
+        <width>150</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>商店购买 </string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_22">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>24</y>
+         <width>83</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>枫币买锤子</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_23">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>49</y>
+         <width>107</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>黄金枫叶买锤子</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_25">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>74</y>
+         <width>83</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>挂机卡购买</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_26">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>99</y>
+         <width>95</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>金钩钥匙橙纸</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_15">
+      <property name="geometry">
+       <rect>
+        <x>325</x>
+        <y>510</y>
+        <width>310</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Link号</string>
+      </property>
+      <widget class="QCheckBox" name="LINK_DAILY_CY_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>自动远征</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_15">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>工会签到</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_16">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>领取奖励</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_JY_2">
+       <property name="geometry">
+        <rect>
+         <x>109</x>
+         <y>25</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>精英副本</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="linkDailyCL_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>材料副本</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_JG_2">
+       <property name="geometry">
+        <rect>
+         <x>208</x>
+         <y>25</y>
+         <width>83</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>金钩海兵王</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_ZC_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>51</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>周常副本</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_JZT_2">
+       <property name="geometry">
+        <rect>
+         <x>109</x>
+         <y>51</y>
+         <width>83</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>奈特金字塔</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_TY_2">
+       <property name="geometry">
+        <rect>
+         <x>208</x>
+         <y>51</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>唐云料理</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_CY_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>77</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>次元系统</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LINK_DAILY_JH_2">
+       <property name="geometry">
+        <rect>
+         <x>109</x>
+         <y>77</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>宋体</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>进化系统</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="button.qrc"/>
+ </resources>
+ <connections/>
+</ui>
